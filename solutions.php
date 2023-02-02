@@ -32,7 +32,7 @@ function twoSum($nums, $target) {
   return $new;
 }
 
-$ans = twoSum($arr, $sum);
-print_r($ans);
+// $ans = twoSum($arr, $sum);
+// print_r($ans);
 
 ?>

@@ -62,45 +62,76 @@ function twoSum($nums, $target) {
   return $new;
 }
 
-$ans = twoSum($arr2, $sum2);
-print_r($ans);
+// $ans = twoSum($arr2, $sum2);
+// print_r($ans);
 
 // GREATEST COMMON DIVISOR OF STRINGS
 
-function countChars() {
-  $first = "ABCABC";
-  $second = "ABC";
+function countChars($elem) {
 
-  $test = ["A", "B", "C"];
   $chars = [];
-  $words = array();
-  $j = 1;
+  $words = [];
 
-  $split = str_split($first);
-  // $split = str_split($first, 3);
+  $split = str_split($elem);
   $arr = $split;
-  print_r($arr);
 
   $length = count($arr);
-
-  $join = implode("", $test);
-  print "$join \n \n";
+  $last = $length - 1;
 
   for($i = 0; $i < $length; $i++) {
-    // Make Copy of Array??
-    $arr[$i] === $arr[$j] ? print_r(array_chunk($arr, $j)) : '';
-    $j++;
 
+    if ($i === 0) array_push($chars, $arr[0]);
+    if ($i === $last) 
+    {
+      array_push($chars, $arr[$i]);
+      $group = implode("", $chars);
+      array_push($words, $group);
+      $chars = [];
+    }
 
-    // $i === 0 ? array_push($chars, $arr[0]) : '';
-    
-    // for($j = 1; $j < $length; $j++) {
-      // $arr[$i] === $arr[$j] ? implode("", $chars) && array_push($words, $chars) : array_push($chars, $arr[$i]);
-    // }
-    print_r($words);
+    if ($i !== $last && $arr[$i] !== $arr[0]) array_push($chars, $arr[$i]);
+    if ($i !== 0 && $arr[$i] === $arr[0]) 
+    {
+      $group = implode("", $chars);
+      array_push($words, $group);
+      $chars = [];
+      array_push($chars, $arr[$i]);
+    }
   }
+  return $words;
 }
 
-countChars();
+$abcabc = "ABCABC";
+$abc = "ABC";
+
+$abab = "ABABAB";
+$ab = "ABAB";
+
+$tauxxtauxx = "TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX";
+$tauxx = "TAUXXTAUXXTAUXXTAUXXTAUXX";
+
+$leet = "LEET";
+$code = "CODE";
+
+// $solution1 = countChars($abcabc);
+// print_r($solution1);
+// $solution2 = countChars($abc);
+// print_r($solution2);
+
+
+// $solution1 = countChars($abab);
+// print_r($solution1);
+// $solution2 = countChars($ab);
+// print_r($solution2);
+
+// $solution1 = countChars($tauxxtauxx);
+// print_r($solution1);
+// $solution2 = countChars($tauxx);
+// print_r($solution2);
+
+$solution1 = countChars($leet);
+print_r($solution1);
+$solution2 = countChars($code);
+print_r($solution2);
 
 ?>
