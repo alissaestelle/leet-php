@@ -81,7 +81,7 @@ function countChars($elem) {
   for($i = 0; $i < $length; $i++) {
 
     if ($i === 0) array_push($chars, $arr[0]);
-    if ($i === $last) 
+    if ($i === $last)
     {
       array_push($chars, $arr[$i]);
       $group = implode("", $chars);
