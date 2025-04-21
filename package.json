@@ -1,0 +1,24 @@
+{
+  "name": "leet-php",
+  "version": "1.0.0",
+  "description": "A collection of LeetCode practice problems for PHP.",
+  "keywords": [
+    "['LeetCode'",
+    "'PHP']"
+  ],
+  "homepage": "https://github.com/alissaestelle/leet-php#readme",
+  "bugs": {
+    "url": "https://github.com/alissaestelle/leet-php/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alissaestelle/leet-php.git"
+  },
+  "license": "ISC",
+  "author": "AW",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: No Test Specified\" && exit 1"
+  }
+}
