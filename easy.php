@@ -100,7 +100,7 @@ function countChars($strA, $strB)
                 array_push($chars, $arr[$i]);
 
                 // ... then convert that letter (plus any others in the array) back into a string/word ($group):
-                $group = implode("", $chars);
+                $group = implode('', $chars);
 
                 // ... then push the new word into a 3rd array ($words):
                 array_push($words, $group);
@@ -117,7 +117,7 @@ function countChars($strA, $strB)
             // If it's not the first iteration AND the current letter *does* match the first letter ...
             if ($i !== 0 && $arr[$i] === $arr[0]) {
                 // ... combine any existing letters in the 2nd array ($chars) into a string/word:
-                $group = implode("", $chars);
+                $group = implode('', $chars);
 
                 // ... the push that string/word into the 3rd array ($words):
                 array_push($words, $group);
@@ -147,28 +147,28 @@ function countChars($strA, $strB)
     print "$countB \n \n";
 
     if ($resultA[0] !== $resultB[0]) {
-        return "";
+        return '';
     }
 
     $modulo = $countA % $countB;
 
-    $prime = implode("", [$resultB[0]]);
-    $GCD = implode("", $resultB);
+    $prime = implode('', [$resultB[0]]);
+    $GCD = implode('', $resultB);
 
     return $modulo === 0 ? $GCD : $prime;
 }
 
-$abcabc = "ABCABC";
-$abc = "ABC";
+$abcabc = 'ABCABC';
+$abc = 'ABC';
 
-$abab = "ABABAB";
-$ab = "ABAB";
+$abab = 'ABABAB';
+$ab = 'ABAB';
 
-$tauxxtauxx = "TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX";
-$tauxx = "TAUXXTAUXXTAUXXTAUXXTAUXX";
+$tauxxtauxx = 'TAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXXTAUXX';
+$tauxx = 'TAUXXTAUXXTAUXXTAUXXTAUXX';
 
-$leet = "LEET";
-$code = "CODE";
+$leet = 'LEET';
+$code = 'CODE';
 
 // $solution = countChars($abcabc, $abc);
 // print $solution;
@@ -182,6 +182,17 @@ $code = "CODE";
 // $solution = countChars($leet, $code);
 // print $solution;
 
+function isPalindrome($x)
+{
+    $xStr = str_replace(' ', '', (string) strtolower($x));
+    $xRev = strrev($xStr);
+
+    return $xStr === $xRev;
+}
+
+// isPalindrome(121);
+// isPalindrome(-121);
+
 function romanToInt($roman)
 {
     $numerals = [
@@ -194,39 +205,45 @@ function romanToInt($roman)
         'M' => 1000,
     ];
 
-    $romanChars = str_split($roman);
-    print_r($romanChars);
+    $length = strlen($roman);
+    $output = 0;
 
-    $key = 0;
+    for ($i = 0; $i < $length; $i++) {
+        $nextChar = $roman[$i + 1] ?? false;
 
-    $number = array_reduce(
-        $romanChars,
-        function ($acc, $char) use ($numerals, $romanChars, &$key) {
-            print "Current Char: $char \n";
-            print "Current Key: $key \n";
+        $nextChar && $numerals[$roman[$i]] < $numerals[$nextChar]
+            ? ($output -= $numerals[$roman[$i]])
+            : ($output += $numerals[$roman[$i]]);
+    }
 
-            print "$numerals[$char] \n";
+    /*
+        $sum = array_reduce(
+            $romanChars,
+            function ($acc, $char) use ($numerals, $romanChars, &$i) {
+                $nextChar = $romanChars[$i] ?? false;
 
-            if ($key > 0) {
-                // print "$romanChars[$key] \n";
-                print $romanChars[$key - 1];
+                $nextChar && $numerals[$char] < $numerals[$nextChar]
+                    ? ($acc -= $numerals[$char])
+                    : ($acc += $numerals[$char]);
 
-                $hasOne = str_contains((string) $numerals[$romanChars[$key - 1]], (string) '1');
+                $i++;
+                return $acc;
+            },
+            0
+        );
+    */
 
-                // print "$hasOne \n";
-            } else {
-                print $romanChars[$key + 1];
-            }
-
-            $key += 1;
-
-            // $acc += $numerals[$char];
-            // print $acc;
-        },
-        0
-    );
+    return $output;
 }
 
-$solution = romanToInt("III");
+// $solution1 = romanToInt('III');
+// $solution = romanToInt('LVIII');
+$solution = romanToInt('MCMXCIV');
+print "$solution \n";
+
+// $solution = romanToInt1('III');
+// $solution = romanToInt1('LVIII');
+// $solution = romanToInt1('MCMXCIV');
+// print $solution;
 
 ?>
